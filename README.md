@@ -10,9 +10,11 @@ with plans to include SkyMapper light curves, as well.
 
 Installing `lightcurvy` is currently more complex than it probably should be, mostly because of `eleanor`, which never seems to play nicely with my system... but here's what I've come up with. Note that this 
 
-First, you should start by creating a new environment. I've tested this using Python version 3.11.9 and it works great. Python 3.6.8 (and presumably earlier) does not seem to work due to conflicting numpy versions. Once created, activate this new environment.
+First, you should start by creating a new environment. I've tested this using Python version 3.11.9 and it works great. I've tested with Python version 3.6.8 and it does not seem to work due to conflicting numpy versions. Once created, activate this new environment.
 
-First, start by downloading and installing `eleanor`. For some reason installing `eleanor` via pip or directly through GitHub doesn't seem to work. Instead, manually download the `eleanor-main.zip` available from the [eleanor GitHub page](https://github.com/afeinstein20/eleanor/tree/main). Once downloaded, unzip this file, move into that directory, and run `python setup.py install` form the command line. This will install a correctly function version of `eleanor` into your environment. 
+Second, download and install `eleanor`. For some reason installing `eleanor` via pip or directly through GitHub doesn't seem to work. Instead, manually download the `eleanor-main.zip` available from the [eleanor GitHub page](https://github.com/afeinstein20/eleanor/tree/main). Once downloaded, unzip this file, move into that directory `cd eleanor-main`, and run `python setup.py install` form the command line. This will install a correctly function version of `eleanor` into your environment. 
+
+Next, install `lightcurvy` by calling `pip install git+https://github.com/wendeborn8/lightcurvy.git`. I haven't yet been able to add `lightcurvy` to PyPI, so for now installing via GitHub will have to suffice. 
 
 ---
 Using lightcurvy is pretty straightforward. After defining some basics (such as your target's name), you create a lightcurvy object:
