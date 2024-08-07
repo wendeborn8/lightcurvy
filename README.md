@@ -8,25 +8,49 @@ with plans to include SkyMapper light curves, as well.
 ---
 ## Installation and Setup
 
-Installing `lightcurvy` is currently more complex than it probably should be, mostly because of `eleanor`, which never seems to play nicely with my system... but here's what I've come up with. Note that this 
+Installing `lightcurvy` is currently more complex than it probably should be, mostly because of `eleanor`, which never seems to play nicely with my system... but here's what I've come up with:
 
-First, you should start by creating a new environment. I've tested this using Python version 3.11.9 and it works great. I've tested with Python version 3.6.8 and it does not seem to work due to conflicting numpy versions. Once created, activate this new environment.
+1. First, you should start by creating a new Python environment. I've tested this using Python version 3.11.9 and it works great, and should probably work with other versions, though this has not been tested. I have tested with Python version 3.6.8 and it does not seem to work due to conflicting required numpy versions. Once created, activate this new environment.
 
-Second, download and install `eleanor`. For some reason installing `eleanor` via pip or directly through GitHub doesn't seem to work. Instead, manually download the `eleanor-main.zip` available from the [eleanor GitHub page](https://github.com/afeinstein20/eleanor/tree/main). Once downloaded, unzip this file, move into that directory `cd eleanor-main`, and run `python setup.py install` form the command line. This will install a correctly function version of `eleanor` into your environment. 
+2. Second, install `lightcurvy` by calling `pip install git+https://github.com/wendeborn8/lightcurvy.git`. I haven't yet been able to add `lightcurvy` to PyPI, so for now installing via GitHub will have to suffice. This should install the necessary packages for `lightcurvy` to function, with the exception of `eleanor`, which we'll address next.
 
-Next, install `lightcurvy` by calling `pip install git+https://github.com/wendeborn8/lightcurvy.git`. I haven't yet been able to add `lightcurvy` to PyPI, so for now installing via GitHub will have to suffice. 
+3. Next, download and install `eleanor`. For some reason installing `eleanor` via pip or directly through GitHub results in errors when it's run. Instead, manually download the `eleanor-main.zip` available from the [eleanor GitHub page](https://github.com/afeinstein20/eleanor/tree/main). Once downloaded, unzip this file, move into that directory `cd eleanor-main`, and run `python setup.py install` from the command line. This will install a correctly functioning version of `eleanor` into your environment. Note that I've encountered issues where some packages that `eleanor` requires aren't always installed, so they may need to be manually installed if you run into "{package_name} not found" issues.
+
+You can now check that `lightcurvy` has been correctly installed by calling `from lightcurvy import Lightcurvy` from within Python in this new environment. If you see a message about ASAS-SN Sky-Patrol and no error messages, you should be good to go!
+
+![image](https://github.com/user-attachments/assets/1e69becc-b501-4eed-b25a-67d6d0b09c54)
+
+Assuming it is installed correctly, you will probably want to modify the default config file, which contains username/password/token information for retrieving Atlas and LCOGT light curves. You can do this either manually, or by using a Lightcurvy object and calling `modify_config`, as shown below. This only needs to be done once. Replace the values between asterisks (**) with the appropriate info. The token values are not strictly necessary, but may speed things up if manually provded. You can create the respective accounts here: [ATLAS](https://fallingstar-data.com/forcedphot/register/), [LCOGT](https://observe.lco.global/accounts/register). 
+```
+from lightcurvy import Lightcurvy
+
+target = Lightcurvy()
+target.modify_config(
+    atlas_username = *atlas_username*,
+    atlas_password = *atlas_password*,
+    atlas_token = *atlas_token*,
+    lcogt_password = *lcogt_password*,
+    lcogt_username = *lcogt_username*,
+    lcogt_token = *lcogt_token*,
+    )
+```
 
 ---
+## Usage and Basic Tutorial
+
 Using lightcurvy is pretty straightforward. After defining some basics (such as your target's name), you create a lightcurvy object:
 ```
+from lightcurvy import Lightcurvy
+
 obj = 'GM Aur'                   # This is the SIMBAD name of your target
 obj_save = 'gmaur'               # This is how any resulting files will be saved. For example, I like to avoid spaces and any special characters in my filenames
 ra, dec = None, None             # If your target does not have a SIMBAD name, you can provide RA/Dec instead, though some function may not work as intended
 save = True                      # Whether to save the resulting light curves
 overwrite = False                # Whether to overwrite existing light curve files
 save_dir = r'D:\My Drive\Data'   # Where all of the resulting data will be saved
-lcy = lightcurvy.lightcurvy(obj = obj, obj_save = obj_save, ra = ra, dec = dec,
-                            save = save, overwrite = overwrite, save_dir = save_dir)
+
+target = Lightcurvy(obj = obj, obj_save = obj_save, ra = ra, dec = dec,
+                    save = save, overwrite = overwrite, save_dir = save_dir)
 ```
 
 On its own, this won't do much. The real meat of `lightcurvy` comes from `lightcurvy.query_all`, which actually fetches the light curves. Let's again first declare some relevant parameters, then use `query_all`.
