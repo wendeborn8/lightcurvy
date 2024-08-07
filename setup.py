@@ -5,7 +5,7 @@ with open('requirements.txt') as f:
 
 setup(
       name = 'Lightcurvy',
-      version = '0.3',
+      version = '0.3.1',
       description = 'Scripts to fetch astronomical light curves from a variety of sources.',
       author = 'John Carlos Wendeborn',
       author_email = 'jwendeborn@gmail.com',
