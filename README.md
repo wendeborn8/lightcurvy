@@ -1,14 +1,7 @@
 A small set of scripts to fetch astronomical light curve data from a variety of sources, including:
-- [ASAS-SN](http://asas-sn.ifa.hawaii.edu/skypatrol/)
-- [ZTF](https://www.ztf.caltech.edu/)
-- [AAVSO](https://www.aavso.org/LCGv2/)
-- [Atlas](https://fallingstar-data.com/forcedphot/)
-- [WISE](https://irsa.ipac.caltech.edu/Missions/wise.html)
-- [Gaia](https://gaia.aip.de/cms/data/gdr3/)
-- [Pan-STARRS](https://catalogs.mast.stsci.edu/panstarrs/)
-- [LCOGT](https://archive.lco.global/)
+- [ASAS-SN](http://asas-sn.ifa.hawaii.edu/skypatrol/), [ZTF](https://www.ztf.caltech.edu/), [AAVSO](https://www.aavso.org/LCGv2/), [Atlas](https://fallingstar-data.com/forcedphot/), [WISE](https://irsa.ipac.caltech.edu/Missions/wise.html), [Gaia](https://gaia.aip.de/cms/data/gdr3/), [Pan-STARRS](https://catalogs.mast.stsci.edu/panstarrs/), [LCOGT](https://archive.lco.global/), and TESS.
 
-with plans to include TESS and SkyMapper light curves, as well.
+with plans to include SkyMapper light curves, as well.
 
 ---
 Using lightcurvy is pretty straightforward. After defining some basics (such as your target's name), you create a lightcurvy object:
