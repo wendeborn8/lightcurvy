@@ -559,6 +559,7 @@ class Lightcurvy:
         
     def _read_config(self):
         config_path = os.path.join(os.path.dirname(__file__), 'config.txt')
+        print(config_path)
         config = configparser.ConfigParser()
         config.read(config_path)
         
