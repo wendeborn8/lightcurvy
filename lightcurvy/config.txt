@@ -1,0 +1,10 @@
+[Atlas]
+atlas_username = wendeborn8
+atlas_password = Qzectbum13579@Atlas
+atlas_token = e5b0fd23a3169bb96a1b43d3a85dab576b1be158
+
+[LCOGT]
+lcogt_username = wendebo2@bu.edu
+lcogt_password = Qzectbum13579@LCO
+lcogt_token = 
+
