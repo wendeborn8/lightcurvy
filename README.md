@@ -1,7 +1,18 @@
+## Overview
+
 A small set of scripts to fetch astronomical light curve data from a variety of sources, including:
 - [ASAS-SN](http://asas-sn.ifa.hawaii.edu/skypatrol/), [ZTF](https://www.ztf.caltech.edu/), [AAVSO](https://www.aavso.org/LCGv2/), [Atlas](https://fallingstar-data.com/forcedphot/), [WISE](https://irsa.ipac.caltech.edu/Missions/wise.html), [Gaia](https://gaia.aip.de/cms/data/gdr3/), [Pan-STARRS](https://catalogs.mast.stsci.edu/panstarrs/), [LCOGT](https://archive.lco.global/), and TESS.
 
 with plans to include SkyMapper light curves, as well.
+
+---
+## Installation and Setup
+
+Installing `lightcurvy` is currently more complex than it probably should be, mostly because of `eleanor`, which never seems to play nicely with my system... but here's what I've come up with. Note that this 
+
+First, you should start by creating a new environment. I've tested this using Python version 3.11.9 and it works great. Python 3.6.8 (and presumably earlier) does not seem to work due to conflicting numpy versions. Once created, activate this new environment.
+
+First, start by downloading and installing `eleanor`. For some reason installing `eleanor` via pip or directly through GitHub doesn't seem to work. Instead, manually download the `eleanor-main.zip` available from the [eleanor GitHub page](https://github.com/afeinstein20/eleanor/tree/main). Once downloaded, unzip this file, move into that directory, and run `python setup.py install` form the command line. This will install a correctly function version of `eleanor` into your environment. 
 
 ---
 Using lightcurvy is pretty straightforward. After defining some basics (such as your target's name), you create a lightcurvy object:
