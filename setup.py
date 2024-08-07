@@ -12,4 +12,6 @@ setup(
       install_requires = install_reqs,
       license = 'MIT',
       url = 'https://github.com/wendeborn8/lightcurvy',
+      package_data={'': ['config.txt', 'filter_infos.csv']},
+      include_package_data=True,
       )
