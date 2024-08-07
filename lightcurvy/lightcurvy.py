@@ -559,7 +559,6 @@ class Lightcurvy:
         
     def _read_config(self):
         config_path = os.path.join(os.path.dirname(__file__), 'config.txt')
-        print(config_path)
         config = configparser.ConfigParser()
         config.read(config_path)
         
@@ -569,6 +568,10 @@ class Lightcurvy:
         self.lcogt_username = config.get('LCOGT', 'lcogt_username')
         self.lcogt_password = config.get('LCOGT', 'lcogt_password')
         self.lcogt_token = config.get('LCOGT', 'lcogt_token')
+
+        print('Config file loaded with parameters:')
+        print(f'\tAtlas Username/Password/Token = {atlas_username} / {atlas_password} / {atlas_token}')
+        print(f'\tLCOGT Username/Password/Token = {lcogt_username} / {lcogt_password} / {lcogt_token}')
         
     ###
         
