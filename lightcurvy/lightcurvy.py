@@ -570,8 +570,8 @@ class Lightcurvy:
         self.lcogt_token = config.get('LCOGT', 'lcogt_token')
 
         print('Config file loaded with parameters:')
-        print(f'\tAtlas Username/Password/Token = {atlas_username} / {atlas_password} / {atlas_token}')
-        print(f'\tLCOGT Username/Password/Token = {lcogt_username} / {lcogt_password} / {lcogt_token}')
+        print(f'\tAtlas Username/Password/Token = {self.atlas_username} / {self.atlas_password} / {self.atlas_token}')
+        print(f'\tLCOGT Username/Password/Token = {self.lcogt_username} / {self.lcogt_password} / {self.lcogt_token}')
         
     ###
         
