@@ -18,7 +18,7 @@ from .mag_to_flux import mag_to_flux
 
 ###
 
-def tglc_query(tic_id, obj, root, sectors = None, ffi_cutout_size = 50, limit_mag = 16, timeout = 6000, prior = 0.5, flux_col = 'flux_psf', err_col = 'flux_psf_err'):
+def tglc_query(tic_id, obj, root, sectors = None, ffi_cutout_size = 50, limit_mag = 16, timeout = 6000, prior = None, flux_col = 'flux_psf', err_col = 'flux_psf_err'):
     
     if sectors is None:
         sectors = util.find_tess_sectors(obj = obj)
@@ -38,7 +38,7 @@ def tglc_query(tic_id, obj, root, sectors = None, ffi_cutout_size = 50, limit_ma
                         get_all_lc = False, 
                         first_sector_only = False,
                         sector = int(sector),
-                        prior = 0.9)
+                        prior = prior)
             except Exception as e:
                 print(e)
             
@@ -204,7 +204,7 @@ def eleanor_query(obj, download_dir, flux_col = 'flux_pca', sectors = None, tic_
 def tess_query(obj = None, ra = None, dec = None,
                save = True, overwrite = False, obj_save = None, save_dir = None,
                sectors = None, ffi_cutout_size = 50, limit_mag = 15, timeout = 6000,
-               prior = 0.5, flux_col = 'flux_psf', err_col = 'flux_psf_err',
+               prior = None, flux_col = 'flux_psf', err_col = 'flux_psf_err',
                eleanor_size = 15, eleanor_bkg_size = 31,
                tess_sources = ['tglc', 'spoc', 'eleanor'],
                **kwargs):
