@@ -88,7 +88,7 @@ class Lightcurvy:
                   sources = ['asassn', 'ztf', 'atlas', 'aavso', 'wise', 'panstarrs', 'gaia', 'lcogt', 'tess'], 
                   search_radius = 0.0015,
                   lcogt_start = '2014-01-01', lcogt_end = '',
-                  overwrite_images = False,
+                  overwrite_images = False, image_save_dir = None,
                   tess_sources = ['tglc', 'spoc', 'eleanor'], 
                   tess_sectors = None, ffi_cutout_size = 50, limit_mag = 15, timeout = 6000,
                   eleanor_size = 15, eleanor_bkg_size = 31
@@ -125,6 +125,9 @@ class Lightcurvy:
             
         overwrite_images : bool, default False
             Whether to overwrite images download from LCOGT. Recommended to set to True ONLY when a substantuce change has been made to LCOGT's BANZAI pipeline that affects archived frames.
+
+        image_save_dir : str
+            Where to save images downloaded from LCOGT. Can be useful to put all images in one location in case targets overlap. Defauls to same lcoation as 'save_dir'.
             
         tess_sources : list of str, default ['tglc', 'spoc', 'eleanor']
             What TESS light curve sources to query. Options include 'spoc', 'eleanor', 'tglc'. If you only need a quick light curve for older sectors, recommend using only 'spoc'. Technical issues often arise with 'eleanor' and 'tglc' can be very slow and not always reliable.
@@ -203,6 +206,7 @@ class Lightcurvy:
                 'lcogt_start' : lcogt_start,
                 'lcogt_end' : lcogt_end,
                 'overwrite_images' : overwrite_images,
+                'image_save_dir' : image_save_dir,
                 'tess_sectors' : tess_sectors,
                 'ffi_cutout_size' : ffi_cutout_size,
                 'limit_mag' : limit_mag,
