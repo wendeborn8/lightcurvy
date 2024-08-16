@@ -113,7 +113,7 @@ def lcogt_query(obj = None, ra = None, dec = None, obj_save = None,
         ra, dec = util.get_radec(obj = obj)
         
     # Check if this light curve has already been generated
-     if obj_save is None:
+    if obj_save is None:
         obj_save = obj.lower().replace(' ', '_')
     if save_dir is None:
         save_dir = os.getcwd()
