@@ -87,7 +87,7 @@ class Lightcurvy:
                   overwrite = False,
                   sources = ['asassn', 'ztf', 'atlas', 'aavso', 'wise', 'panstarrs', 'gaia', 'lcogt', 'tess'], 
                   search_radius = 0.0015,
-                  lcogt_start = None, lcogt_end = None,
+                  lcogt_start = '2014-01-01', lcogt_end = '',
                   overwrite_images = False,
                   tess_sources = ['tglc', 'spoc', 'eleanor'], 
                   tess_sectors = None, ffi_cutout_size = 50, limit_mag = 15, timeout = 6000,
