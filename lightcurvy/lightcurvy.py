@@ -250,7 +250,7 @@ class Lightcurvy:
             
         #
         if self.save:
-            os.path.makedirs(os.path.join(self.save_dir, 'lightcurves'), exist_ok = True)
+            os.makedirs(os.path.join(self.save_dir, 'lightcurves'), exist_ok = True)
             self.lc.to_csv(os.path.join(self.save_dir, 'lightcurves', f'{self.obj_save}.csv'), index = False)
             
         return self.lc
