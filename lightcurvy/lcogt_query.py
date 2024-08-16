@@ -105,7 +105,7 @@ def get_frames(url, username, password, token, verbose = False):
 def lcogt_query(obj = None, ra = None, dec = None,
                 save = True, overwrite = False, overwrite_images = False, obj_save = None, image_savedir = None,
                 lcogt_username = 'wendebo2@bu.edu', lcogt_password = 'Qzectbum13579@LCO', lcogt_token = '',
-                start = '2014-01-01', end = '', verbose = False,
+                lcogt_start = '2014-01-01', lcogt_end = '', verbose = False,
                 telescopes = 'all', reduction_level = 91, limit = 1000, filters = 'all', proposal_id = '', **kwargs
                 ):
     
@@ -149,14 +149,14 @@ def lcogt_query(obj = None, ra = None, dec = None,
         # If the output directory (outdir) doesn't exist, make it
         os.makedirs(image_savedir, exist_ok = True)
         
-        print(f'Grabbing LCOGT light curves\n\tObject: {obj}\n\tRA: {ra:.4f}\n\tDec: {dec:.4f}\n\tStart/End Dates: {start}/{end}\n\tTelescopes: {telescopes}\n\tFilters: {filters}\n\tLCOGT Username / Password / Token: {lcogt_username} / {lcogt_password} / {lcogt_token}')
+        print(f'Grabbing LCOGT light curves\n\tObject: {obj}\n\tRA: {ra:.4f}\n\tDec: {dec:.4f}\n\tStart/End Dates: {lcogt_start}/{lcogt_end}\n\tTelescopes: {telescopes}\n\tFilters: {filters}\n\tLCOGT Username / Password / Token: {lcogt_username} / {lcogt_password} / {lcogt_token}')
     
         
         # Collect all the valid frames
         all_frames = []
         for filt in filters:
             for telescope_id in telescopes:
-                request_url = get_url(proposal_id = proposal_id, start = start, end = end, 
+                request_url = get_url(proposal_id = proposal_id, start = lcogt_start, end = lcogt_end, 
                                       reduction_level = reduction_level, primary_optical_element = filt,
                                       target_name = target_name, telescope_id = telescope_id,
                                       limit = limit, covers = covers)
