@@ -102,8 +102,8 @@ def get_frames(url, username, password, token, verbose = False):
 
 ###
 
-def lcogt_query(obj = None, ra = None, dec = None,
-                save = True, overwrite = False, overwrite_images = False, obj_save = None, image_savedir = None,
+def lcogt_query(obj = None, ra = None, dec = None, obj_save = None,
+                save = True, overwrite = False, overwrite_images = False, save_dir = None, image_save_dir = None,
                 lcogt_username = 'wendebo2@bu.edu', lcogt_password = 'Qzectbum13579@LCO', lcogt_token = '',
                 lcogt_start = '2014-01-01', lcogt_end = '', verbose = False,
                 telescopes = 'all', reduction_level = 91, limit = 1000, filters = 'gp,rp,ip,zs', proposal_id = '', **kwargs
@@ -113,11 +113,15 @@ def lcogt_query(obj = None, ra = None, dec = None,
         ra, dec = util.get_radec(obj = obj)
         
     # Check if this light curve has already been generated
-    if obj_save is None:
+     if obj_save is None:
         obj_save = obj.lower().replace(' ', '_')
-    if image_savedir is None:
-        image_savedir = os.path.join(r'D:\My Drive\Data', 'LCOGT', obj_save)
-    savename = os.path.join(r'D:\My Drive\Data', 'LCOGT', rf'{obj_save}.csv')
+    if save_dir is None:
+        save_dir = os.getcwd()
+    if image_save_dir is None:
+        image_save_dir = os.path.join(save_dir, 'lcogt', obj_save)
+    savename = os.path.join(save_dir, 'lcogt', rf'{obj_save}.csv')
+    os.makedirs(os.path.join(save_dir, 'lcogt'), exist_ok = True)
+    os.makedirs(os.path.join(image_save_dir), exist_ok = True)
     
     if os.path.exists(savename) and not overwrite:
         lc = pd.read_csv(savename)
@@ -125,7 +129,6 @@ def lcogt_query(obj = None, ra = None, dec = None,
         return lc
     
     else:
-
         covers = f'POINT%28{ra}%20{dec}%29'
         target_name = ''
             
