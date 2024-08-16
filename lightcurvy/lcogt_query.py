@@ -106,7 +106,7 @@ def lcogt_query(obj = None, ra = None, dec = None,
                 save = True, overwrite = False, overwrite_images = False, obj_save = None, image_savedir = None,
                 lcogt_username = 'wendebo2@bu.edu', lcogt_password = 'Qzectbum13579@LCO', lcogt_token = '',
                 lcogt_start = '2014-01-01', lcogt_end = '', verbose = False,
-                telescopes = 'all', reduction_level = 91, limit = 1000, filters = 'all', proposal_id = '', **kwargs
+                telescopes = 'all', reduction_level = 91, limit = 1000, filters = 'gp,rp,ip,zs', proposal_id = '', **kwargs
                 ):
     
     if obj is not None and (ra is None and dec is None):
