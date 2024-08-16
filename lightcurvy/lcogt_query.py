@@ -149,9 +149,6 @@ def lcogt_query(obj = None, ra = None, dec = None, obj_save = None,
             else:
                 telescopes = [telescopes]
         
-        # If the output directory (outdir) doesn't exist, make it
-        os.makedirs(image_savedir, exist_ok = True)
-        
         print(f'Grabbing LCOGT light curves\n\tObject: {obj}\n\tRA: {ra:.4f}\n\tDec: {dec:.4f}\n\tStart/End Dates: {lcogt_start}/{lcogt_end}\n\tTelescopes: {telescopes}\n\tFilters: {filters}\n\tLCOGT Username / Password / Token: {lcogt_username} / {lcogt_password} / {lcogt_token}')
     
         
@@ -170,7 +167,7 @@ def lcogt_query(obj = None, ra = None, dec = None, obj_save = None,
         # Try to download/write each frame
         existing_files, new_files, failed_files = 0, 0, 0
         print('\t- - - - - - - - - -')
-        for frame in tqdm(all_frames, desc = f'\tFound {len(all_frames)} frames. Downloading to {image_savedir}'):
+        for frame in tqdm(all_frames, desc = f'\tFound {len(all_frames)} frames. Downloading to {image_save_dir}'):
             
             # Get the url and filename for each frame
             url, filename = frame['url'], frame['filename']
@@ -178,7 +175,7 @@ def lcogt_query(obj = None, ra = None, dec = None, obj_save = None,
                 print(filename)
             
             # Determine the output filename
-            outfile = os.path.join(image_savedir, filename)
+            outfile = os.path.join(image_save_dir, filename)
             
             # Write each image to disk, checking if it exists, how big the file size is (if it exists), and whether existing files should be overwritten       
             if os.path.exists(savename):
@@ -217,7 +214,7 @@ def lcogt_query(obj = None, ra = None, dec = None, obj_save = None,
         
         # Extract the light curve
         lc = pd.DataFrame()
-        fits_files = [os.path.join(image_savedir, file) for file in os.listdir(image_savedir) if file.endswith('.fits') or file.endswith('.fits.fz')]
+        fits_files = [os.path.join(image_save_dir, file) for file in os.listdir(image_save_dir) if file.endswith('.fits') or file.endswith('.fits.fz')]
         
         print('\t- - - - - - - - - -')
         for file in tqdm(fits_files, total = len(fits_files), desc = f'\tGrabbing photometry for {obj} from reduced LCOGT images.'):
